@@ -12,14 +12,60 @@ class Board extends Component {
     super();
 
     this.state = {
-      cards: [],
+      cardList: [],
     };
   }
+  
+  componentDidMount() {
+    axios.get(`${this.props.url}${this.props.boardName}/cards`)
+      .then((response) => {
+        const cardlist = response.data.map((card) => {
+          const newCard = {
+            ...card,
+          }
+          return newCard
+        })
+        console.log(cardlist)
+        this.setState({
+          cardList: cardlist,
+        });
+      })
+      .catch ((error) => {
+      console.log(error);
+      });
+  }
+  onDeleteCard =(cardId)=> {
+    const newCardList = this.state.cardList.filter(card => card["card"].id !== cardId)
+    console.log(newCardList)
+    this.setState ({
+      cardList : newCardList,
+    })
+    axios.delete(`https://inspiration-board.herokuapp.com/cards/${cardId}`)
+    .then((response)=>{
+      console.log(response)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }
+
+
 
   render() {
+    const cardcollection = this.state.cardList.map((card,i) => {
+      return([
+        <Card
+        key={i}
+        id={card["card"].id}
+        text={card["card"].text}
+        emoji={card["card"].emoji}
+        onDeleteCard={this.onDeleteCard}
+      /> ]
+      )
+    })
     return (
       <div>
-        Board
+        {cardcollection}
       </div>
     )
   }
@@ -27,6 +73,8 @@ class Board extends Component {
 }
 
 Board.propTypes = {
+  cards: PropTypes.array.isRequired,
+  onDeleteCard: PropTypes.func
 
 };
 
