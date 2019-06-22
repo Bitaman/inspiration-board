@@ -23,7 +23,7 @@ class Card extends Component {
         <button
           style={{ color: '#00f' }}
           type="button"
-          className="btn btn-danger pet-card--close-btn"
+          className="btn btn-danger card__delete"
           aria-label="Close"
           onClick={this.handleclick}
         >
@@ -35,8 +35,8 @@ class Card extends Component {
 }
 
 Card.propTypes = {
-  // id: PropTypes.number.isRequired,
-  // text: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
 
 };
 
