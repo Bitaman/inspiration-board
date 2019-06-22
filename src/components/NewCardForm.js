@@ -39,36 +39,48 @@ class NewCardForm extends Component {
 
     render() {
         return (
+            <div className="new-card-form">
             <form
                 className="new-card-form__form"
                 onSubmit={this.addCard}
             >
-                <h3>Add a Card</h3>
-                <label>
+                <h3 className="new-card-form__header">Add a Card</h3>
+                <label className="new-card-form__form-label">
                     Text:
                     <input
+                        className="new-card-form__form-textarea"
                         name="text"
                         type="text"
                         value={this.state.text}
                         onChange={this.onInputChange}></input>
                 </label>
-                <label>
+                <label className="new-card-form__form-label">
                     Emoji:
-                    <input
+                    <select
+                        className="new-card-form__form-select"
                         name="emoji"
-                        type="text"
                         value={this.state.emoji}
-                        onChange={this.onInputChange}></input>
+                        onChange={this.onInputChange}>
+                        <option value={EMOJI_LIST[0]}>{EMOJI_LIST[0]}</option>
+                        <option value={EMOJI_LIST[1]}>{EMOJI_LIST[1]}</option>
+                        <option value={EMOJI_LIST[2]}>{EMOJI_LIST[2]}</option>
+                        <option value={EMOJI_LIST[3]}>{EMOJI_LIST[3]}</option>
+                        <option value={EMOJI_LIST[4]}>{EMOJI_LIST[4]}</option>
+                        <option value={EMOJI_LIST[5]}>{EMOJI_LIST[5]}</option>
+                        <option value={EMOJI_LIST[6]}>{EMOJI_LIST[6]}</option>
+                        </select>
+                        
                 </label>
                 <input className="btn btn-success new-card-form__form-button" type="submit" name="submit" value="Add a Card" />
             </form>
+            </div>
         );
     }
 
 
 }
 NewCardForm.propTypes = {
-    // addCardCallback: PropTypes.func.isRequired,
+    addCardCallback: PropTypes.func.isRequired,
 };
 
 export default NewCardForm;
