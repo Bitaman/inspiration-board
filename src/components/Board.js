@@ -60,9 +60,10 @@ class Board extends Component {
       console.log(response)
     })
     .catch((error)=> {
-      console.log(error)
+      console.log(error.messages)
     })
   }
+
 
 
 
@@ -82,6 +83,9 @@ class Board extends Component {
     })
     return (
       <div>
+        <header>
+
+        </header>
         <div>
           {cardcollection}
         </div>

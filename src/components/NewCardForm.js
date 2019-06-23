@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import emoji from 'emoji-dictionary';
 import './NewCardForm.css';
 
-const EMOJI_LIST = ["", "heart_eyes", "beer", "clap", "sparkling_heart", "heart_eyes_cat", "dog"]
+const EMOJI_LIST = ["", emoji.getUnicode("heart_eyes"), emoji.getUnicode("beer"), emoji.getUnicode("clap"), emoji.getUnicode("sparkling_heart"), emoji.getUnicode("heart_eyes_cat"), emoji.getUnicode("dog")]
 
 class NewCardForm extends Component {
     constructor(props) {
