@@ -13,6 +13,7 @@ class Board extends Component {
 
     this.state = {
       cardList: [],
+      error: ""
     };
   }
   
@@ -33,6 +34,8 @@ class Board extends Component {
       })
       .catch((error) => {
         console.log(error);
+        alert('Error happened');
+        this.setState({ error: error.message });
       });
   }
   onDeleteCard = (cardId) => {
@@ -47,6 +50,8 @@ class Board extends Component {
       })
       .catch((error) => {
         console.log(error)
+        alert('Error happened');
+        this.setState({ error: error.message });
       })
   }
   addCardCallback = (card) => {
@@ -60,7 +65,9 @@ class Board extends Component {
       console.log(response)
     })
     .catch((error)=> {
-      console.log(error.messages)
+      console.log(error)
+      alert('Error happened');
+      this.setState({ error });
     })
   }
 
@@ -83,10 +90,10 @@ class Board extends Component {
     })
     return (
       <div>
-        <header>
-
+        <header classname="validation-errors-display">
+          {this.state.error}
         </header>
-        <div>
+        <div classname="board">
           {cardcollection}
         </div>
         <div>
